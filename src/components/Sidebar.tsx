@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { Action } from "@shared/types";
-import type { ModuleKey } from "../types";
-
-const loadModuleActions = async (module: "module-one" | "module-two"): Promise<Action[]> => {
-  if (module === "module-one") {
-    const { MODULE_ONE_ACTIONS } = await import("@modules/module-one/actions");
-    return MODULE_ONE_ACTIONS;
-  } else {
-    const { MODULE_TWO_ACTIONS } = await import("@modules/module-two/actions");
-    return MODULE_TWO_ACTIONS;
-  }
-};
+import { loadModuleActions, type ModuleKey, type RemoteModuleKey } from "../config/modules";
 
 interface SidebarProps {
   current: ModuleKey;
@@ -29,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ current, currentAction, onNavigate }:
     }
 
     setLoading(true);
-    loadModuleActions(current)
+    loadModuleActions(current as RemoteModuleKey)
       .then(setActions)
       .catch(() => setActions([]))
       .finally(() => setLoading(false));

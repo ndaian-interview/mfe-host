@@ -1,3 +1,4 @@
+// Module declarations generated from config/modules.ts
 declare module "@modules/module-one/App" {
   import { FC } from "react";
   const App: FC;

@@ -1,39 +1,26 @@
-import React, { Suspense, lazy, useMemo } from "react";
+import React, { Suspense, useMemo } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import NavLink from "./NavLink";
 import Sidebar from "./Sidebar";
-import type { ModuleKey } from "../types";
-
-const ModuleOneApp = lazy(() => import("@modules/module-one/App"));
-const ModuleTwoApp = lazy(() => import("@modules/module-two/App"));
+import { MODULES, MODULE_KEYS, getModuleByPath, type ModuleKey, type RemoteModuleKey } from "../config/modules";
 
 const Empty: React.FC = () => null;
-
-const ModuleOnePage: React.FC = () => {
-  return <ModuleOneApp />;
-};
-
-const ModuleTwoPage: React.FC = () => {
-  return <ModuleTwoApp />;
-};
 
 const Shell: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const currentModule: ModuleKey = useMemo(() => {
-    if (location.pathname.startsWith("/module-one")) return "module-one";
-    if (location.pathname.startsWith("/module-two")) return "module-two";
-    return "home";
+    return getModuleByPath(location.pathname);
   }, [location.pathname]);
 
   const currentAction = useMemo(() => {
     const parts = location.pathname.split("/").filter(Boolean);
-    if (parts.length >= 2 && (parts[0] === "module-one" || parts[0] === "module-two")) {
+    if (parts.length >= 2 && MODULE_KEYS.includes(parts[0] as RemoteModuleKey)) {
       return parts[1];
     }
     return "";
-  }, [location.pathname]);
+  }, [location.pathname, currentModule]);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -42,8 +29,9 @@ const Shell: React.FC = () => {
           <div className="text-sm font-semibold text-slate-900">Micro-Frontend Host</div>
           <nav className="flex items-center gap-2">
             <NavLink to="/" label="Home" active={currentModule === "home"} />
-            <NavLink to="/module-one" label="Module One" active={currentModule === "module-one"} />
-            <NavLink to="/module-two" label="Module Two" active={currentModule === "module-two"} />
+            {MODULE_KEYS.map((key) => (
+              <NavLink key={key} to={MODULES[key].path} label={MODULES[key].label} active={currentModule === key} />
+            ))}
           </nav>
         </div>
       </header>
@@ -57,8 +45,10 @@ const Shell: React.FC = () => {
           <Suspense fallback={<div className="text-slate-600">Loading module...</div>}>
             <Routes>
               <Route path="/" element={<Empty />} />
-              <Route path="/module-one/*" element={<ModuleOnePage />} />
-              <Route path="/module-two/*" element={<ModuleTwoPage />} />
+              {MODULE_KEYS.map((key) => {
+                const ModuleComponent = MODULES[key].component;
+                return <Route key={key} path={`${MODULES[key].path}/*`} element={<ModuleComponent />} />;
+              })}
             </Routes>
           </Suspense>
         </main>
