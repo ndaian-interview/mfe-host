@@ -22,6 +22,7 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
       "@": path.resolve(__dirname, "src"),
+      "@shared/types": path.resolve(__dirname, "../shared-types/src"),
     },
   },
   module: {

@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@modules/module-one": ["../module-one/src"],
-      "@modules/module-two": ["../module-two/src"]
+      "@modules/module-two": ["../module-two/src"],
+      "@shared/types": ["../shared-types/src"]
     }
   },
   "include": ["src"],
