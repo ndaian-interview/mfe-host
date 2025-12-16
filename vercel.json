@@ -1,7 +1,6 @@
 {
   "buildCommand": "NODE_ENV=production npm run build",
   "outputDirectory": "dist",
-  "framework": "static",
   "env": {
     "NODE_ENV": "production"
   },
