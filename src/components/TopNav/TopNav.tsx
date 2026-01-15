@@ -1,6 +1,6 @@
 import React from "react";
 import { MODULE_KEYS, ModuleKey, MODULES } from "@/config/modules";
-import NavLink from "../NavLink";
+import NavLink from "./NavLink";
 import Logo from "./Logo";
 
 interface Props {
