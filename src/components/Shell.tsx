@@ -1,8 +1,8 @@
 import React, { Suspense, useMemo } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import NavLink from "./NavLink";
 import Sidebar from "./Sidebar";
 import { MODULES, MODULE_KEYS, getModuleByPath, type ModuleKey, type RemoteModuleKey } from "../config/modules";
+import TopNav from "./TopNav/TopNav";
 
 const Empty: React.FC = () => null;
 
@@ -24,17 +24,7 @@ const Shell: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
-          <div className="text-sm font-semibold text-slate-900">Micro-Frontend Host</div>
-          <nav className="flex items-center gap-2">
-            <NavLink to="/" label="Home" active={currentModule === "home"} />
-            {MODULE_KEYS.map((key) => (
-              <NavLink key={key} to={MODULES[key].path} label={MODULES[key].label} active={currentModule === key} />
-            ))}
-          </nav>
-        </div>
-      </header>
+      <TopNav currentModule={currentModule} />
 
       <div className="mx-auto flex max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <aside className="w-64 shrink-0 rounded-lg border border-slate-200 bg-white shadow-sm">

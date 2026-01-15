@@ -17,7 +17,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
-    publicPath: process.env.PUBLIC_URL || "/",
+    publicPath: "auto",
     clean: true,
   },
   devServer: {
@@ -44,6 +44,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/[name].[hash][ext]",
+        },
       },
     ],
   },

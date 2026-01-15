@@ -5,6 +5,7 @@ coverage/
 .cache/
 .parcel-cache/
 .turbo/
+temp/
 *.tsbuildinfo
 *.log
 npm-debug.log*
