@@ -23,12 +23,12 @@ const Shell: React.FC = () => {
   }, [location.pathname, currentModule]);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div data-testid="page" className="min-h-screen bg-slate-50">
       <TopNav currentModule={currentModule} />
 
-      <div className="mx-auto flex max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:px-8">
+      <div data-testid="page-under-header" className="mx-auto flex gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <aside className="w-64 shrink-0 rounded-lg border border-slate-200 bg-white shadow-sm">
-          <Sidebar current={currentModule} currentAction={currentAction} onNavigate={navigate} />
+          <Sidebar currentModule={currentModule} currentAction={currentAction} onNavigate={navigate} />
         </aside>
 
         <main className="flex-1 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">

@@ -22,7 +22,10 @@ module.exports = {
   },
   devServer: {
     port: 3000,
-    historyApiFallback: true,
+    historyApiFallback: {
+      disableDotRule: true,
+      index: "/",
+    },
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
