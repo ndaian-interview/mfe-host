@@ -3,7 +3,7 @@ import type React from "react";
 import type { Action } from "@shared/types";
 
 // Host ModuleKey includes "home" for the landing page
-export type ModuleKey = "home" | "module-one" | "module-two";
+export type ModuleKey = "home" | "module-one" | "module-two" | "game-hub";
 
 // Remote modules exclude "home"
 export type RemoteModuleKey = Exclude<ModuleKey, "home">;
@@ -35,6 +35,16 @@ export const MODULES: Record<RemoteModuleKey, ModuleConfig> = {
     actionsLoader: async () => {
       const { MODULE_TWO_ACTIONS } = await import("@modules/module-two/actions");
       return MODULE_TWO_ACTIONS;
+    },
+  },
+  "game-hub": {
+    key: "game-hub",
+    label: "Game Hub",
+    path: "/game-hub",
+    component: lazy(() => import("@modules/game-hub/App")),
+    actionsLoader: async () => {
+      const { GAME_HUB_ACTIONS } = await import("@modules/game-hub/actions");
+      return GAME_HUB_ACTIONS;
     },
   },
 };

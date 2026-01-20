@@ -20,3 +20,14 @@ declare module "@modules/module-two/actions" {
   import type { Action } from "@shared/types";
   export const MODULE_TWO_ACTIONS: Action[];
 }
+
+declare module "@modules/game-hub/App" {
+  import { FC } from "react";
+  const App: FC;
+  export default App;
+}
+
+declare module "@modules/game-hub/actions" {
+  import type { Action } from "@shared/types";
+  export const GAME_HUB_ACTIONS: Action[];
+}

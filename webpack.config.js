@@ -10,6 +10,7 @@ require("dotenv").config(); // Load base .env
 const isDevelopment = process.env.NODE_ENV !== "production";
 const moduleOneUrl = process.env.MODULE_ONE_URL || "http://localhost:3001";
 const moduleTwoUrl = process.env.MODULE_TWO_URL || "http://localhost:3002";
+const gameHubUrl = process.env.GAME_HUB_URL || "http://localhost:3003";
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -73,11 +74,13 @@ module.exports = {
       remotes: {
         "@modules/module-one": `module_one@${moduleOneUrl}/remoteEntry.js`,
         "@modules/module-two": `module_two@${moduleTwoUrl}/remoteEntry.js`,
+        "@modules/game-hub": `game_hub@${gameHubUrl}/remoteEntry.js`,
       },
       shared: {
         react: { singleton: true, requiredVersion: "^18.2.0", eager: true },
         "react-dom": { singleton: true, requiredVersion: "^18.2.0", eager: true },
         "react-router-dom": { singleton: true, requiredVersion: "^6.20.0", eager: true },
+        axios: { singleton: true, requiredVersion: "^1.13.2", eager: false },
       },
     }),
   ],
