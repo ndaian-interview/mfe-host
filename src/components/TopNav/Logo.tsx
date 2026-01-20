@@ -33,7 +33,7 @@ export const Logo: React.FC = () => {
 
         {/* text: translate UP to reduce the gap */}
         <g transform={`translate(0, -${TEXT_RAISE})`}>
-          <text fontSize="13" fill="#0f172a" fontWeight="600" letterSpacing="3">
+          <text fontSize="13" className="fill-slate-900 dark:fill-slate-100" fontWeight="600" letterSpacing="3">
             <textPath href="#curve-under" startOffset="50%" textAnchor="middle">
               Micro-Frontend
             </textPath>
