@@ -2,6 +2,7 @@ import React from "react";
 import { MODULE_KEYS, ModuleKey, MODULES } from "@/config/modules";
 import NavLink from "./NavLink";
 import Logo from "./Logo";
+import ColorModeSwitch from "../ColorModeSwitch";
 
 interface Props {
   currentModule: ModuleKey;
@@ -9,7 +10,7 @@ interface Props {
 
 const TopNav: React.FC<Props> = ({ currentModule }: Props) => {
   return (
-    <header className="sticky top-0 z-20 flex h-14 items-center gap-6 border-b border-slate-200 bg-white/95 backdrop-blur px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-20 flex h-14 items-center gap-6 border-b border-slate-200 bg-white/95 backdrop-blur px-4 sm:px-6 lg:px-8 dark:border-slate-700 dark:bg-slate-900/95">
       <Logo />
       <nav className="flex items-center gap-2">
         <NavLink to="/" label="Home" active={currentModule === "home"} />
@@ -17,6 +18,9 @@ const TopNav: React.FC<Props> = ({ currentModule }: Props) => {
           <NavLink key={key} to={MODULES[key].path} label={MODULES[key].label} active={currentModule === key} />
         ))}
       </nav>
+      <div className="ml-auto">
+        <ColorModeSwitch />
+      </div>
     </header>
   );
 };

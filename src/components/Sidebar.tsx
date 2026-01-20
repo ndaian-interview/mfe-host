@@ -26,12 +26,12 @@ const Sidebar: React.FC<SidebarProps> = ({ currentModule, currentAction, onNavig
   }, [currentModule]);
 
   if (loading) {
-    return <div className="p-4 text-sm text-slate-500">Loading actions...</div>;
+    return <div className="p-4 text-sm text-slate-500 dark:text-slate-400">Loading actions...</div>;
   }
 
   if (!actions.length) {
     return (
-      <div className="p-4 text-sm text-slate-500">
+      <div className="p-4 text-sm text-slate-500 dark:text-slate-400">
         Select a module to see available actions (e.g., dashboard or view).
       </div>
     );
@@ -39,7 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentModule, currentAction, onNavig
 
   return (
     <nav className="p-4 space-y-2">
-      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Module actions</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Module actions</p>
       <ul className="space-y-2">
         {actions.map((item) => {
           const active = currentAction === item.slug;
@@ -48,8 +48,8 @@ const Sidebar: React.FC<SidebarProps> = ({ currentModule, currentAction, onNavig
               <button
                 type="button"
                 onClick={() => onNavigate(`/${currentModule}/${item.slug}`)}
-                className={`w-full rounded-md border px-3 py-2 text-left text-sm font-medium shadow-sm transition hover:border-slate-300 hover:bg-slate-50 ${
-                  active ? "border-slate-300 bg-slate-100 text-slate-900" : "border-slate-200 bg-white text-slate-700"
+                className={`w-full rounded-md border px-3 py-2 text-left text-sm font-medium shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:hover:border-slate-600 dark:hover:bg-slate-700 ${
+                  active ? "border-slate-300 bg-slate-100 text-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100" : "border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
                 }`}
               >
                 {item.label}
