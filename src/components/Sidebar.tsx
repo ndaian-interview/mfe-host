@@ -49,7 +49,9 @@ const Sidebar: React.FC<SidebarProps> = ({ currentModule, currentAction, onNavig
                 type="button"
                 onClick={() => onNavigate(`/${currentModule}/${item.slug}`)}
                 className={`w-full rounded-md border px-3 py-2 text-left text-sm font-medium shadow-sm transition hover:border-slate-300 hover:bg-slate-50 dark:hover:border-slate-600 dark:hover:bg-slate-700 ${
-                  active ? "border-slate-300 bg-slate-100 text-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100" : "border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                  active
+                    ? "border-slate-300 bg-slate-100 text-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100"
+                    : "border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
                 }`}
               >
                 {item.label}
